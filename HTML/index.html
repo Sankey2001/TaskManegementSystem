@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskManegementSystem</title>
+    <link rel="stylesheet" href="../Css/Style.css">
+</head>
+
+<body>
+    <section class="container">
+        <header class="Topele">
+            <h1 id="Task_name">Task Manegement System</h1>
+            <div class="searchbar">
+                <input type="text" placeholder="Search.." id="search_ele">
+                <button onclick="searchfun()">Search</button>
+            </div>
+        </header>
+        <div class="formcontainer">
+            <h2 id="task_text">Add Task</h2>
+            <form action="" class="form_info_container" id="form">
+                <label for="Task_id" id="task_lable">Id</label>
+                <input type="number" id="Task_id" name="Task_id" min="1" required>
+                <label for="Task_title">Title</label>
+                <input type="text" id="Task_title" name="Task_title" required>
+                <label for="Task_startdate">Start Date</label>
+                <input type="date" id="Task_startdate" name="Task_startdate" min="" max="" required />
+                <label for="Task_enddate">End Date</label>
+                <input type="date" id="Task_enddate" name="Task_enddate" required />
+                <!-- <label for="task_status" id="">Status</label>
+                <select name="task_status" id="task_status">
+                    <option value="progress">In-Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="duepassed">DuePassed</option>
+                    <option value="cancal">Canceled</option>
+                </select> -->
+
+                <button id="add_task" type="submit">Create Task</button>
+            </form>
+            <form action="" class="form_info_container" id="edit_parent_form">
+                <label for="Parent_id" id="Parent_labal">Id</label>
+                <input type="number" id="Parent_id" name="Parent_id" min="1" required>
+                <label for="Parent_Task_title">Title</label>
+                <input type="text" id="Parent_Task_title" name="Parent_Task_title" required>
+                <label for="Parent_Task_startdate">Start Date</label>
+                <input type="date" id="Parent_Task_startdate" name="Parent_Task_startdate" min="" required />
+                <label for="Parent_Task_enddate">End Date</label>
+                <input type="date" id="Parent_Task_enddate" name="Parent_Task_enddate" required />
+                <button id="add_task" type="submit" >Create Task</button>
+            </form>
+            <form action="" class="form_info_container" id="edit_child_form">
+                <!-- <label for="Child_id" id="Child_labal">Id</label>
+                <input type="number" id="Child_id" name="Child_id" min="1" required> -->
+                <label for="Child_Task_title">Title</label>
+                <input type="text" id="Child_Task_title" name="Child_Task_title" required>
+                <label for="Child_Task_startdate">Start Date</label>
+                <input type="date" id="Child_Task_startdate" name="Child_Task_startdate" min="" required />
+                <label for="Child_Task_enddate">End Date</label>
+                <input type="date" id="Child_Task_enddate" name="Child_Task_enddate" required />
+                <label for="task_status" id="">Status</label>
+                <select name="task_status" id="task_status">
+                    <option value="progress">In-Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="duepassed">DuePassed</option>
+                    <option value="cancal">Canceled</option>
+                </select>
+                <button id="add_task" type="submit" >Create Task</button>
+            </form>
+        </div>
+        <table class="data_table">
+            
+            
+            <tbody class="table_body" id="tbody">
+                
+            </tbody>
+        </table>
+    </section>
+    <script src="../Javascript/index.js"></script>
+</body>
+
+</html>
