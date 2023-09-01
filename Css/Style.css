@@ -5,7 +5,7 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+/* table_body */
 body {
     font-family: 'Roboto', sans-serif;
 }
@@ -359,8 +359,20 @@ td{
      text-align: center;
     font-weight: 500;
 }
+
 .table_body{
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    /* text-align: center; */
+    align-content: center;
+    /* margin-top: 10px; */
+    align-items: center;
+    height: 3rem;
+}
+#search_body{
+    display: none;
     flex-direction: column;
     width: 100%;
     justify-content: space-between;
@@ -391,6 +403,7 @@ tr{
     /* border-collapse:; */
     border-collapse: collapse;
   } 
+
 
   #butstyle{
     padding-top: 2px;

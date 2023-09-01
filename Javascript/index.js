@@ -23,20 +23,41 @@ let parenttaskid = 0;
 date_start.addEventListener('input', updatedate);
 function updatedate() {
     const currentDate = new Date(date_start.value);
-    date_start.min="";
+    date_start.min = "";
     // date_start.value=""
     const formatteddate = currentDate.toISOString().split('T')[0];
     date_end.min = formatteddate;
-    date_start.max="";
+    date_start.max = "";
 }
+
+function updatedate1(date, d) {
+    const currentDate = new Date(date);
+    const end = new Date(d);
+
+    date_start.min = "";
+    date_start.max = "";
+    date_end.min = "";
+    date_end.max = "";
+    // date_start.value=""
+    const formatteddate = currentDate.toISOString().split('T')[0];
+    const edate = end.toISOString().split('T')[0];
+
+    date_start.min = formatteddate;
+    date_start.max = edate;
+    date_end.min = formatteddate;
+    date_end.max = edate;
+    
+    // date_start.max="";
+}
+
 date_end.addEventListener('input', up);
 function up() {
     const currentDate = new Date(date_end.value);
     const formatteddate = currentDate.toISOString().split('T')[0];
     date_start.max = formatteddate;
-    date_end.min="";
-    date_end.max="";
-    date_start.max="";
+    date_end.min = "";
+    date_end.max = "";
+    date_start.max = "";
 
 }
 // date_end.min=formatteddate;
@@ -101,6 +122,9 @@ form.addEventListener('submit', function (event) {
             status: "In-Progress",
             // subtaskdata: []
         }
+        task_title.value = " ",
+            date_start.value = '',
+            date_end.value = ''
         TaskArray[parenttaskid].subtaskdata.push(data);
         console.log(TaskArray)
         subtaskadd = false;
@@ -165,6 +189,11 @@ function addSubtask(index) {
     console.log("button " + index)
     task_id.style.display = "none";
     document.getElementById("task_lable").style.display = "none";
+    console.log(TaskArray[index].start);
+    updatedate1(TaskArray[index].start, TaskArray[index].end);
+    // updatedate1(TaskArray[index].end);
+
+
     if (index != null) {
         subtaskadd = true;
         parenttaskid = index;
@@ -319,7 +348,7 @@ function searchTasks() {
     let tableBody = document.getElementById('search_body');
     tableBody.innerHTML = innerHTML;
     task_id.style.display = "flex";
-    document.getElementById("task_lable").style.display = "flex";
+    document.getElementById("search_body").style.display = "flex";
     // document.getElementsByClassName("serach_table_boday").style.display="flex"
 }
 
@@ -352,9 +381,13 @@ edit_parent_form.addEventListener('submit', function (event) {
     console.log(Parent_id.value);
     let idval = IdArray.filter(taskid => taskid == Parent_id.value);
     console.log("edit value", idval)
-
+    // console.log("Parent id",IdArray[Parent_edit_id.id])
     if (idval.length == 0) {
+
         IdArray.push(Parent_id.value)
+        // let update_id=IdArray.filter(taskid => taskid !== TaskArray[Parent_edit_id.id]);
+        // IdArray=[];
+        // IdArray=update_id;
         dublicated_text.style.display = "none";
 
         // parenttaskid = data.id;
