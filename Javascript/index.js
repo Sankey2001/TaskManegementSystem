@@ -1,19 +1,18 @@
 
 
 const form = document.getElementById('form');
-const datatable=document.getElementsByClassName('table_body');
-const dublicated_text=document.getElementById('task_text');
+const datatable = document.getElementsByClassName('table_body');
+const dublicated_text = document.getElementById('task_text');
 const edit_parent_form = document.getElementById('edit_parent_form')
 const task_id = document.getElementById('Task_id')
 const task_title = document.getElementById('Task_title');
 const date_start = document.getElementById('Task_startdate');
 const date_end = document.getElementById('Task_enddate');
 const status_value = document.getElementById('task_status')
+let changestatus = 0;
 let TaskArray = [];
 let IdArray = [];
 let matchingItems = [];
-// const matchingItems = [];
-
 
 let Parent_edit_id = 0;
 let Child_edit_id = 0;
@@ -21,24 +20,23 @@ let check = true
 let subtaskadd = false;
 let parentid = 0;
 let parenttaskid = 0;
-
-// const parts=date_start.value.split('-');
-// const currentDate=new Date();
-// const formatteddate=`${parts[2]}-${parts[1]}-${parts[0]}`;
-// const formatteddate=currentDate.toISOString().split('T')[0];
-
 date_start.addEventListener('input', updatedate);
 function updatedate() {
     const currentDate = new Date(date_start.value);
+    date_start.min="";
+    // date_start.value=""
     const formatteddate = currentDate.toISOString().split('T')[0];
     date_end.min = formatteddate;
-
+    date_start.max="";
 }
 date_end.addEventListener('input', up);
 function up() {
     const currentDate = new Date(date_end.value);
     const formatteddate = currentDate.toISOString().split('T')[0];
     date_start.max = formatteddate;
+    date_end.min="";
+    date_end.max="";
+    date_start.max="";
 
 }
 // date_end.min=formatteddate;
@@ -55,27 +53,12 @@ form.addEventListener('submit', function (event) {
             status: "In-Progress",
             subtaskdata: []
         }
-        //  task_id.value=" ",
         task_title.value = " ",
             date_start.value = '',
             date_end.value = ''
 
-        // console.log(data.id)
-        // parenttaskid = data.id;
-
         if (TaskArray.length != 0) {
-            // TaskArray.map((item) => {
-            //     if (item.id == data.id) {
-            //         check = false;
-            //     }
-            // })
 
-            // if (check) {
-            //     TaskArray.push(data)
-            // }
-            // else {
-            //     console.log("dublicated entry found")
-            // } 
             let idval = IdArray.filter(taskid => taskid == task_id.value);
             console.log("total value", idval)
 
@@ -90,7 +73,7 @@ form.addEventListener('submit', function (event) {
                 displayTasks();
 
             }
-            else{
+            else {
                 dublicated_text.style.display = "flex";
             }
         }
@@ -124,107 +107,10 @@ form.addEventListener('submit', function (event) {
 
         displayTasks();
         calculatestatus();
-
-        //showsubtask();
-        // showdata();
     }
 })
 
-function showdata() {
-    const tableBody = document.querySelector(".table_body");
-    // const newDiv = `<tr></tr>`;
 
-    const tableRows = TaskArray.map((item, index) => {
-        parentid = item.id;
-        return `
-        <tr id=${"tp"} class=${item.id} >
-          <td>${item.id}</td>
-          <td>${item.title}</td>
-          <td>${item.start}</td>
-          <td>${item.end}</td>
-          <td>${item.status}</td>
-          <td><button class=${"edit "} id=${"butstyle"} button_index=${index}>Edit</button></td>
-          <td><button class=${"delete "} id=${"butstyle"} button_index=${index}>Delete</button></td>
-          <td><button class=${"add "} id=${"butstyle"} button_index=${index}>Add</button></td>
-
-          
-        </tr>
-      `;
-    });
-    // let tpm=newDiv.innerHTML(tableRows);
-    tableBody.innerHTML = tableRows;
-    const editbutton = document.querySelectorAll('.edit')
-    editbutton.forEach((button) => {
-        button.addEventListener("click", (event) => {
-            const index = event.target.getAttribute("button_index")
-            const edittask = prompt("edit task:", TaskArray[index].id)
-
-            if (edittask != null) {
-                TaskArray[index].id = edittask;
-                showdata();
-            }
-        })
-    })
-
-    const deletebutton = document.querySelectorAll('.delete')
-
-    deletebutton.forEach((button) => {
-        button.addEventListener("click", (event) => {
-
-            const index = event.target.getAttribute("button_index")
-
-            console.log(index)
-
-            if (index != null) {
-                TaskArray.splice(index, 1);
-                showdata();
-            }
-        })
-    })
-
-    const addbutton = document.querySelectorAll('.add')
-    addbutton.forEach((button) => {
-        button.addEventListener("click", subtask)
-    })
-
-}
-
-
-function showsubtask(event) {
-    const tableBody = document.querySelector(".table_body");
-
-    // const row = document.getElementsByClassName(`${parentid}`)
-    tableheading = `
-        <tr >
-          <td> SubTask List</td>
-          
-        </tr>
-      `;
-
-    // let tpm=newDiv.innerHTML(tableRows);
-    tableBody.innerHTML = tableheading;
-
-    let newrow = TaskArray.map((item, index) => (
-        item.subtaskdata.map((items, index) => {
-
-            return `
-        <tr id=${"tp"} class=${items.id} >
-          <td>${items.id}</td>
-          <td>${items.title}</td>
-          <td>${items.start}</td>
-          <td>${items.end}</td>
-          <td>${items.status}</td>
-        </tr>
-      `;
-        })
-    ))
-
-    tableBody.innerHTML = newrow;
-    // const row = document.getElementsByClassName("1")
-    // const newr = row[0];
-    // console.log(newr)
-    // newr.appendChild(newrow);
-}
 
 function calculatestatus() {
     let Progress = 0;
@@ -268,7 +154,7 @@ function calculatestatus() {
         displayTasks();
     }
     else if (Progress > 0) {
-        TaskArray[parenttaskid].status = "Progress";
+        TaskArray[parenttaskid].status = "In-Progress";
         console.log(TaskArray[parenttaskid])
         displayTasks();
     }
@@ -283,8 +169,6 @@ function addSubtask(index) {
         subtaskadd = true;
         parenttaskid = index;
     }
-
-    // calculatestatus();
 }
 function displayTasks() {
 
@@ -316,21 +200,21 @@ function displayTasks() {
 
         // const row = document.createElement('tr');
 
-        innerHTML += `<tr>
+        innerHTML += `<tr id=tablerow>
 
-      <td>${task.id}</td>
+      <td >${task.id}</td>
 
-      <td>${task.title}</td>
+      <td id='text_margin'>${task.title}</td>
 
-      <td>${task.start}</td>
+      <td id='start_margin'>${task.start}</td>
 
-      <td>${task.end}</td>
+      <td id='end_margin'>${task.end}</td>
 
-      <td>${task.status}</td>
+      <td id=${task.status}>${task.status}</td>
 
-      <td><button onclick="addSubtask(${index})"> Add subtask </button>  
-            <button onclick="Edit_task(${index})"> Edit </button>
-           <button onclick="Delete_task(${index})"> Delete </button> </td>
+      <td id="buttons_crud"><button onclick="addSubtask(${index}) " id="add_taskbutton"> Add subtask </button>  
+            <button onclick="Edit_task(${index})" id="edit_taskbutton">  Edit </button>
+           <button onclick="Delete_task(${index})" id="delete_taskbutton"> Delete </button> </td>
            </tr>
 
     `;
@@ -338,47 +222,34 @@ function displayTasks() {
 
             innerHTML += `<tr>
 
-      <th> Sub Task List </th>
+      <th id='subtasklist'> Sub Task List </th>
 
     </tr>
 
     `;
 
         }
-
-
-
-        //   table.appendChild(row);
-
-
-
         task.subtaskdata.forEach((subtask, i) => {
-
-            //  const subtaskRow = document.createElement('tr');
-            // <td>${new Date(subtask.start).toDateString()}</td>
-
-
             innerHTML += `<tr>
 
         <td>${subtask.id}</td>
 
-        <td>${subtask.title}</td>
+        <td id='text_margin'>${subtask.title}</td>
 
-        <td>${subtask.start}</td>
+        <td id='start_margin'>${subtask.start}</td>
 
-        <td>${subtask.end}</td>
+        <td id='end_margin'>${subtask.end}</td>
 
-        <td>${subtask.status}</td>
+        <td id=${subtask.status}>${subtask.status}</td>
 
-        <td><button onclick="addSubtask(${i})"> Add subtask </button>  
-
-           <button onclick="Sub_Delete_task(${i})"> Delete </button>
-           <button onclick="Edit_sub_task(${i})"> Edit </button>
+        <td id="buttons_crud"><button onclick="addSubtask(${i})" id="add_taskbutton"> Add subtask </button>  
+           <button onclick="Sub_Delete_task(${i})" id="edit_taskbutton"> Delete </button>
+           <button onclick="Edit_sub_task(${i})" id="delete_taskbutton"> Edit </button></td>
       `;
 
-            // table.appendChild(subtaskRow);
-
+            changestatus = i;
         });
+        console.log(changestatus)
 
     });
 
@@ -415,75 +286,32 @@ function searchTasks() {
 
 
 
-  matchingItems.forEach((task, index) => {
+    matchingItems.forEach((task, index) => {
 
         // const row = document.createElement('tr');
-        console.log("id is ",task);
+        console.log("id is ", task);
 
         innerHTML += `<tr>
 
-      <td>${task.id}</td>
+      <td >${task.id}</td>
 
-      <td>${task.title}</td>
+      <td id='text_margin'>${task.title}</td>
 
-      <td>${task.start}</td>
+      <td id='start_margin'>${task.start}</td>
 
-      <td>${task.end}</td>
+      <td id='end_margin'>${task.end}</td>
 
       <td>${task.status}</td>
 
-      <td><button onclick="addSubtask(${index})"> Add subtask </button>  
-            <button onclick="Edit_task(${index})"> Edit </button>
-           <button onclick="Delete_task(${index})"> Delete </button> </td>
+      <td id="add_taskbutton"><button onclick="addSubtask(${index})" id="add_taskbutton"> Add subtask </button>  
+            <button onclick="Edit_task(${index})" id="edit_taskbutton"> Edit </button>
+           <button onclick="Delete_task(${index})" id="delete_taskbutton"> Delete </button> </td>
            </tr>
 
     `;
-        if (task.subtaskdata.length > 0) {
-
-            innerHTML += `<tr>
-
-      <th> Sub Task List </th>
-
-    </tr>
-
-    `;
-
-        }
-
 
 
         //   table.appendChild(row);
-
-
-
-        task.subtaskdata.forEach((subtask, i) => {
-
-            //  const subtaskRow = document.createElement('tr');
-            // <td>${new Date(subtask.start).toDateString()}</td>
-
-
-            innerHTML += `<tr>
-
-        <td>${subtask.id}</td>
-
-        <td>${subtask.title}</td>
-
-        <td>${subtask.start}</td>
-
-        <td>${subtask.end}</td>
-
-        <td>${subtask.status}</td>
-
-        <td><button onclick="addSubtask(${i})"> Add subtask </button>  
-
-           <button onclick="Sub_Delete_task(${i})"> Delete </button>
-           <button onclick="Edit_sub_task(${i})"> Edit </button>
-      `;
-
-            // table.appendChild(subtaskRow);
-
-        });
-
     });
 
 
@@ -492,6 +320,7 @@ function searchTasks() {
     tableBody.innerHTML = innerHTML;
     task_id.style.display = "flex";
     document.getElementById("task_lable").style.display = "flex";
+    // document.getElementsByClassName("serach_table_boday").style.display="flex"
 }
 
 function Sub_Delete_task(index) {
@@ -538,14 +367,18 @@ edit_parent_form.addEventListener('submit', function (event) {
                 Task.end = Parent_Task_enddate.value
                 // console.log(TaskArray)
                 Parent_Task_title.value = " ",
-                Parent_Task_startdate.value = '',
-                Parent_Task_enddate.value = ''
+                    Parent_Task_startdate.value = '',
+                    Parent_Task_enddate.value = ''
                 displayTasks();
                 calculatestatus();
             }
         })
+        form.style.display = "flex"
+        let edit_parent_form = document.getElementById('edit_parent_form');
+        edit_parent_form.style.display = "none";
+
     }
-    else{
+    else {
         dublicated_text.style.display = "flex";
 
     }
@@ -571,6 +404,9 @@ edit_child_form.addEventListener('submit', function (event) {
             displayTasks();
             calculatestatus();
         }
+        form.style.display = "flex"
+        let edit_parent_form = document.getElementById('edit_child_form');
+        edit_parent_form.style.display = "none";
 
     })
     // console.log("hello ji")
@@ -592,29 +428,40 @@ function searchfun(event) {
 
     const searchBar = document.getElementById('search_ele');
     // datatable.style.display="none"
-    document.getElementById('d_table').style.display="none"
+    document.getElementById('d_table').style.display = "none"
+    // document.getElementsByClassName("serach_table_boday").style.display="flex"
 
 
     const searchTerm = searchBar.value.toLowerCase();
 
     console.log(searchBar.value)
 
-     matchingItems = [];
+    matchingItems = [];
     TaskArray.forEach(task => {
         // console.log(task.title.toLowerCase(),"data value");
         const title_match = task.title.toLowerCase().includes(searchTerm);
         const status_match = task.status.toLowerCase().includes(searchTerm);
+        const start_date = task.start.toLowerCase().includes(searchTerm);
+        const end_date = task.end.toLowerCase().includes(searchTerm);
+
 
         const matchingSubtasks = task.subtaskdata.filter(subtask =>
             subtask.title.toLowerCase().includes(searchTerm) ||
-            subtask.status.toLowerCase().includes(searchTerm)
-
+            subtask.status.toLowerCase().includes(searchTerm) ||
+            subtask.start.toLowerCase().includes(searchTerm) ||
+            subtask.end.toLowerCase().includes(searchTerm)
         );
 
         if (title_match) {
             matchingItems.push(task);
         }
-        else if(status_match){
+        else if (status_match) {
+            matchingItems.push(task)
+        }
+        else if (start_date) {
+            matchingItems.push(task)
+        }
+        else if (end_date) {
             matchingItems.push(task)
         }
 
@@ -622,7 +469,7 @@ function searchfun(event) {
             matchingItems.push(...matchingSubtasks);
         }
     });
-    if(matchingItems.length>0){
+    if (matchingItems.length > 0) {
         searchTasks();
     }
 
@@ -631,12 +478,12 @@ function searchfun(event) {
     // You can update your UI to display the matching items here
 }
 
-function Cleanfun(){
-    // console.log("console.log");
+function Cleanfun() {
+    console.log("console.log");
     let tableBody = document.getElementById('search_body');
-    tableBody.style.display="none";
-    document.getElementById('d_table').style.display="flex"
-    matchingItems=[];
+    tableBody.style.display = "none";
+    document.getElementById('d_table').style.display = "flex"
+    matchingItems = [];
 
 
 }

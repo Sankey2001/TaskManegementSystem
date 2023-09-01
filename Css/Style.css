@@ -17,14 +17,133 @@ body {
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    padding-top: 4rem;
+    /* padding-top: 4rem; */
     
 
     /* border-style: dotted; */
 
 }
+#search_ele{
+    width: 500px;
+    height: 57px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 90rem; */
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 10px;
+    /* height: 11.0625rem; */
+    height: 100px;
+    /* flex-shrink: 0; */
+
+}
+.combination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    width: 1100px;
+}
+/* .navbutton{
+    display: flex;
+    gap: 300px;
+} */
+.logoheadding {
+    color: var(--primary-100, #A5823C);
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+#col_text {
+    color: var(--dark-100, #24282C);
+    font-family: 'Manrope', sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.navlist {
+    display: inline-flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 48px;
+
+}
+
+ul {
+    list-style: none;
+}
+
+#Home_list {
+    color: var(--primary-100, #A5823C);
+
+    /* web/Font-6/bold */
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+li {
+    color: var(--grey-100, #878787);
+
+    /* web/Font-6/medium */
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.navbutton {
+    display: flex;
+    width: 220px;
+    height: 70px;
+    padding: 1.5rem 2rem;
+    justify-content: center;
+    border: none;
+    align-items: center;
+    /* flex-shrink: 0; */
+    background: var(--primary-100, #A5823C);
+}
+
+#button_text {
+    color: var(--background-light-100, #FFF);
+    text-align: center;
+
+    /* web/Font-6/semibold */
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+#Search_button,#Clear_button{
+    /* padding: 25px 25px 25px 25px; */
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    border: none;
+    font-size: 25px;
+
+}
 #Task_name{
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 700;
     margin-right: 8rem;
 }
@@ -36,6 +155,41 @@ body {
     color: rgb(207, 81, 81);
     display: none;
 }
+.data_table,tr {
+    border: 2px solid black;
+    border-collapse: collapse;
+  }
+
+  .searchdata,tr{
+    border: 2px solid black;
+    border-collapse: collapse;
+  }
+  #add_taskbutton{
+    border: none;
+    background: none;
+    color: rgb(129, 96, 160);
+  }
+  #edit_taskbutton{
+    border: none;
+    background: none;
+    
+  }
+  #buttons_crud{
+    display: flex;
+    gap: 8px;
+  }
+  #delete_taskbutton{
+    border: none;
+    background: none;
+    color: rgb(197, 70, 70);
+    
+  }
+  tr{
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 2px;
+    padding-right: 8px;
+  }
 .Topele input[type=text] {
     /* float: right; */
     padding: 6px;
@@ -44,7 +198,12 @@ body {
     margin-right: 16px;
     font-size: 17px;
   }
-
+  #tablerow{
+    margin-top: 20px;
+  }
+#subtasklist{
+    color: rgb(238, 174, 56);
+}
 .formcontainer {
     display: flex;
     flex-direction: column;
@@ -60,6 +219,15 @@ body {
 }
 #edit_parent_form{
     display: none;
+}
+#text_margin{
+    margin-left: 113px;
+}
+#start_margin{
+    margin-left: 106px;
+}
+#end_margin{
+    margin-left: 52px;  
 }
 
 #edit_child_form{
@@ -140,6 +308,19 @@ label {
     font-size: 1.5rem;
 }
 
+#In-Progress,#Progress{
+    color: rgb(127, 127, 207);
+}
+#completed{
+    color: rgb(75, 199, 75);
+}
+#duepassed{
+    color: pink;
+}
+#cancal{
+    color: rgb(202, 76, 76);
+}
+
 #add_task {
     width: 30%;
     height: 3.5rem;
@@ -189,6 +370,7 @@ td{
     align-items: center;
     height: 3rem;
 }
+
 #tp{
     border: 1px solid black;
     height: 3rem;

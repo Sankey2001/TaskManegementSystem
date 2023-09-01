@@ -10,15 +10,33 @@
 
 <body>
     <section class="container">
-        <header class="Topele">
+        <!-- <header class="Topele">
             <h1 id="Task_name">Task Manegement System</h1>
             <div class="searchbar">
                 <input type="text" placeholder="Search.." id="search_ele">
-                <button onclick="searchfun()">Search</button>
-                <button onclick="Cleanfun()">Clear</button>
+                <button onclick="searchfun()" id="Search_button">Search</button>
+                <button onclick="Cleanfun()" id="Clear_button">Clear</button>
 
             </div>
-        </header>
+        </header> -->
+        <nav class=" navbar">
+            <div class="logoheadding">
+                <h3> Photo<span id="col_text">Grapz</span></h3>
+            </div>
+
+            <div class="combination">
+
+                <ul class="navlist">
+                    <input type="text" placeholder="Search.." id="search_ele">
+                </ul>
+                <!-- <div class="navbutton"> -->
+                    <button onclick="searchfun()" class="navbutton" id="Search_button"><h3 id="button_text">Search</h3></button>
+                    <button onclick="Cleanfun()"class="navbutton" id="Clear_button"><h3 id="button_text">Clear</h3></button>
+
+                <!-- </div> -->
+                
+            </div>
+        </nav>
         <div class="formcontainer">
             <h2 id="task_text">Dublicated Id Present please entre new id</h2>
             <form action="" class="form_info_container" id="form">
@@ -30,7 +48,7 @@
                 <label for="Task_startdate">Start Date</label>
                 <input type="date" id="Task_startdate" name="Task_startdate" min="" max="" required />
                 <label for="Task_enddate">End Date</label>
-                <input type="date" id="Task_enddate" name="Task_enddate" required />
+                <input type="date" id="Task_enddate" name="Task_enddate" min="" max="" required />
                 <button id="add_task" type="submit">Create Task</button>
             </form>
             <form action="" class="form_info_container" id="edit_parent_form">
@@ -40,9 +58,9 @@
                 <label for="Parent_Task_title">Title</label>
                 <input type="text" id="Parent_Task_title" name="Parent_Task_title" required>
                 <label for="Parent_Task_startdate">Start Date</label>
-                <input type="date" id="Parent_Task_startdate" name="Parent_Task_startdate" min="" required />
+                <input type="date" id="Parent_Task_startdate" name="Parent_Task_startdate" min="" max="" required />
                 <label for="Parent_Task_enddate">End Date</label>
-                <input type="date" id="Parent_Task_enddate" name="Parent_Task_enddate" required />
+                <input type="date" id="Parent_Task_enddate" name="Parent_Task_enddate" min="" max="" required />
                 <button id="add_task" type="submit" >Create Task</button>
             </form>
             <form action="" class="form_info_container" id="edit_child_form">
@@ -51,15 +69,15 @@
                 <label for="Child_Task_title">Title</label>
                 <input type="text" id="Child_Task_title" name="Child_Task_title" required>
                 <label for="Child_Task_startdate">Start Date</label>
-                <input type="date" id="Child_Task_startdate" name="Child_Task_startdate" min="" required />
+                <input type="date" id="Child_Task_startdate" name="Child_Task_startdate" min="" max="" required />
                 <label for="Child_Task_enddate">End Date</label>
-                <input type="date" id="Child_Task_enddate" name="Child_Task_enddate" required />
+                <input type="date" id="Child_Task_enddate" name="Child_Task_enddate" min="" max="" required />
                 <label for="task_status" id="">Status</label>
                 <select name="task_status" id="task_status">
-                    <option value="progress">In-Progress</option>
-                    <option value="completed">Completed</option>
-                    <option value="duepassed">DuePassed</option>
-                    <option value="cancal">Canceled</option>
+                    <option value="progress" id="progress">In-Progress</option>
+                    <option value="completed" id="completed">Completed</option>
+                    <option value="duepassed" id="duepassed">DuePassed</option>
+                    <option value="cancal" id="cancal">Canceled</option>
                 </select>
                 <button id="add_task" type="submit" >Create Task</button>
             </form>
