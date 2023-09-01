@@ -32,6 +32,10 @@ body {
     display: flex;
 
 }
+#task_text{
+    color: rgb(207, 81, 81);
+    display: none;
+}
 .Topele input[type=text] {
     /* float: right; */
     padding: 6px;
@@ -144,7 +148,7 @@ label {
     font-size: 1.2rem;
     font-weight: 500;
 }
-.data_table{
+.data_table,.searchdata{
     margin: auto;
     width: 85%;
     margin-top: 2rem;

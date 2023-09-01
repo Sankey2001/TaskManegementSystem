@@ -15,11 +15,14 @@
             <div class="searchbar">
                 <input type="text" placeholder="Search.." id="search_ele">
                 <button onclick="searchfun()">Search</button>
+                <button onclick="Cleanfun()">Clear</button>
+
             </div>
         </header>
         <div class="formcontainer">
-            <h2 id="task_text">Add Task</h2>
+            <h2 id="task_text">Dublicated Id Present please entre new id</h2>
             <form action="" class="form_info_container" id="form">
+                <label for="Child_id" id="parenttitle">Parent Task</label>
                 <label for="Task_id" id="task_lable">Id</label>
                 <input type="number" id="Task_id" name="Task_id" min="1" required>
                 <label for="Task_title">Title</label>
@@ -28,17 +31,10 @@
                 <input type="date" id="Task_startdate" name="Task_startdate" min="" max="" required />
                 <label for="Task_enddate">End Date</label>
                 <input type="date" id="Task_enddate" name="Task_enddate" required />
-                <!-- <label for="task_status" id="">Status</label>
-                <select name="task_status" id="task_status">
-                    <option value="progress">In-Progress</option>
-                    <option value="completed">Completed</option>
-                    <option value="duepassed">DuePassed</option>
-                    <option value="cancal">Canceled</option>
-                </select> -->
-
                 <button id="add_task" type="submit">Create Task</button>
             </form>
             <form action="" class="form_info_container" id="edit_parent_form">
+                <label for="Child_id" id="Child_labal">Edit_parent_Task</label>
                 <label for="Parent_id" id="Parent_labal">Id</label>
                 <input type="number" id="Parent_id" name="Parent_id" min="1" required>
                 <label for="Parent_Task_title">Title</label>
@@ -50,8 +46,8 @@
                 <button id="add_task" type="submit" >Create Task</button>
             </form>
             <form action="" class="form_info_container" id="edit_child_form">
-                <!-- <label for="Child_id" id="Child_labal">Id</label>
-                <input type="number" id="Child_id" name="Child_id" min="1" required> -->
+                 <label for="Child_id" id="Child_labal">Edit SubTask</label>
+                <!--<input type="number" id="Child_id" name="Child_id" min="1" required> -->
                 <label for="Child_Task_title">Title</label>
                 <input type="text" id="Child_Task_title" name="Child_Task_title" required>
                 <label for="Child_Task_startdate">Start Date</label>
@@ -68,10 +64,17 @@
                 <button id="add_task" type="submit" >Create Task</button>
             </form>
         </div>
-        <table class="data_table">
+        <table class="data_table" id="d_table">
             
             
             <tbody class="table_body" id="tbody">
+                
+            </tbody>
+        </table>
+        <table class="searchdata">
+            
+            
+            <tbody class="serach_table_boday" id="search_body">
                 
             </tbody>
         </table>
