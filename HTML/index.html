@@ -41,10 +41,12 @@
             <h2 id="task_text">Dublicated Id Present please entre new id</h2>
             <form action="" class="form_info_container" id="form">
                 <label for="Child_id" id="parenttitle">Parent Task</label>
+                <label for="Child_id" id="Childtitle">Child Task</label>
                 <label for="Task_id" id="task_lable">Id</label>
                 <input type="number" id="Task_id" name="Task_id" min="1" required>
                 <label for="Task_title">Title</label>
                 <input type="text" id="Task_title" name="Task_title" required>
+                <p id="errorMsg"></p>
                 <label for="Task_startdate">Start Date</label>
                 <input type="date" id="Task_startdate" name="Task_startdate" min="" max="" required />
                 <label for="Task_enddate">End Date</label>
@@ -57,6 +59,7 @@
                 <input type="number" id="Parent_id" name="Parent_id" min="1" required>
                 <label for="Parent_Task_title">Title</label>
                 <input type="text" id="Parent_Task_title" name="Parent_Task_title" required>
+                <p id="ParenterrorMsg"></p>
                 <label for="Parent_Task_startdate">Start Date</label>
                 <input type="date" id="Parent_Task_startdate" name="Parent_Task_startdate" min="" max="" required />
                 <label for="Parent_Task_enddate">End Date</label>
@@ -68,6 +71,8 @@
                 <!--<input type="number" id="Child_id" name="Child_id" min="1" required> -->
                 <label for="Child_Task_title">Title</label>
                 <input type="text" id="Child_Task_title" name="Child_Task_title" required>
+                <p id="ChilderrorMsg"></p>
+
                 <label for="Child_Task_startdate">Start Date</label>
                 <input type="date" id="Child_Task_startdate" name="Child_Task_startdate" min="" max="" required />
                 <label for="Child_Task_enddate">End Date</label>

@@ -55,6 +55,10 @@ body {
     display: flex;
     gap: 300px;
 } */
+#errorMsg,#ParenterrorMsg,#ChilderrorMsg{
+    color: red;
+    display: none;
+}
 .logoheadding {
     color: var(--primary-100, #A5823C);
     text-align: center;
@@ -345,6 +349,12 @@ thead{
     text-align: center;
     display: flex;
     padding: 0 15px;
+}
+#Childtitle{
+    display: none;
+}
+#parenttitle{
+    display: block;
 }
 
 th,td{
